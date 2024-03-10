@@ -1,0 +1,164 @@
+#root {
+  max-width: 1123px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+  min-height: 94vh;
+}
+
+.card a {
+  color: #0e0e0e !important;
+}
+
+.read-the-docs {
+  color: #888;
+  font-size: .8em;
+  display: inline-block;
+  height: 26px;
+
+  span {
+    margin: 0 3em;
+  }
+
+  .made-by {
+    font-size: .8em;
+    padding-top: 4px;
+    float: right;
+  }
+}
+
+.main-body {
+  background-color: white;
+  min-height: 100vh;
+  min-width:25%;
+}
+
+.navbar .nav-box {
+  display: inline;
+  margin: .75em;
+}
+
+.navbar .nav-box a {
+  color: #f9f9f9;
+}
+
+.section {
+  text-align: left;
+  font-size: 1em;
+  padding: 0 .5em .5em;
+  margin-left: 1em;
+  font-size: .9em;
+
+  h6 {
+    text-decoration: underline;
+    text-underline-offset: .35em;
+  }
+}
+
+.top-section {
+  margin-top: 1em;
+}
+
+.table {
+  margin-top: 2em;
+    text-align: left;
+
+    ul li {
+      display: block;
+    }
+}
+
+.about-league {
+  min-height: 345px;
+}
+
+.about-cup {
+  min-height: 345px;
+}
+
+.cup {
+  img {
+    float: left;
+    margin: -4em 2.5em 0 0;
+  }
+}
+
+.history {
+  img {
+    float: right;
+    margin: 0em 0 0 2.5em;
+  }
+}
+
+.commishes {
+  img {
+    float: right;
+    margin: -1em 0 0 2.5em;
+  }
+}
+
+.standings-module, .schedule-module {
+  padding: 2em;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  margin: 2em 0 3em;
+}
+
+.date-header {
+  td {
+    padding: 0;
+  }
+
+  div {
+    background: #202526;
+    color: #f9f9f9;
+    padding: .5rem .5rem;
+  }
+}
+
+.sched-time {
+  width: 12%;
+  max-width: 12%;
+}
+.sched-team {
+  width: 25%;
+  max-width: 25%;
+  border-left: #0e0e0e 1px solid;
+}
+.sched-score {
+  width: 16%;
+  max-width: 16%;
+}
+
+.rosters-player {
+  width: 20%;
+  max-width: 20%;
+}
+
+.rosters-games {
+  width: 13%;
+  max-width: 13%;
+  border-left: #0e0e0e 1px solid;
+}
+
+.rosters-stats {
+  width: 10%;
+  max-width: 10%;
+}
+
+.rosters-ga-stats {
+  width: 12%;
+  max-width: 12%;
+  border-left: #0e0e0e 1px solid;
+}
+
+@media screen and (max-width: 1122px) {
+  .navbar .nav-button {
+    background-color: #202526;
+    padding: 5px 12px;
+  }  
+}
