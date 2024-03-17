@@ -8,7 +8,7 @@ function Rosters() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8082/teams')
+      .get('/teams')
       .then((res) => {
         setTeams(res.data);
       })

@@ -8,7 +8,7 @@ function ShowCurrentPlayerStats() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8082/players', {
+      .get('/players', {
         params: { "isGoalie": false }
       })
       .then((res) => {

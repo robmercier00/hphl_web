@@ -9,7 +9,7 @@ function HomePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8082/schedule", {
+      .get("/schedule", {
         params: { "currentSeason": true }
       })
       .then((res) => {
