@@ -5,10 +5,11 @@ import TeamRow from './TeamRow';
 
 function Rosters() {
   const [teams, setTeams] = useState([]);
+  const linkUri = "/";
 
   useEffect(() => {
     axios
-      .get('/teams')
+      .get(`${linkUri}api/teams`)
       .then((res) => {
         setTeams(res.data);
       })

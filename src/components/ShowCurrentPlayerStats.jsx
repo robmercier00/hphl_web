@@ -5,10 +5,11 @@ import PlayerRow from './PlayerRow';
 
 function ShowCurrentPlayerStats() {
   const [players, setPlayers] = useState([]);
+  const linkUri = "/";
 
   useEffect(() => {
     axios
-      .get('/players', {
+      .get(`${linkUri}api/players`, {
         params: { "isGoalie": false }
       })
       .then((res) => {

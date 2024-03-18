@@ -5,10 +5,11 @@ import ScheduleModule from "./ScheduleModule";
 
 function Schedule() {
   const [schedule, setSchedule] = useState([]);
+  const linkUri = "/";
 
   useEffect(() => {
     axios
-      .get("/schedule", {
+      .get(`${linkUri}api/schedule`, {
         params: { "currentSeason": true }
       })
       .then((res) => {

@@ -5,10 +5,11 @@ import GoalieRow from './GoalieRow';
 
 function ShowCurrentGoalieStats() {
   const [players, setPlayers] = useState([]);
+  const linkUri = "/";
 
   useEffect(() => {
     axios
-      .get("/players", {
+      .get(`${linkUri}api/players`, {
         params: { "isGoalie": true }
       })
       .then((res) => {
