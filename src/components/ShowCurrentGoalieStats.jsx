@@ -17,6 +17,7 @@ function ShowCurrentGoalieStats() {
       })
       .catch((err) => {
         console.log('Error from ShowCurrentGoalieStats');
+        console.log(err);
       });
   }, []);
 

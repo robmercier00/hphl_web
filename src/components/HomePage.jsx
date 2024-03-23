@@ -15,10 +15,10 @@ function HomePage() {
       })
       .then((res) => {
         setSchedule(res.data);
-        // console.log(res.data)
       })
       .catch((err) => {
         console.log('Error from Schedule');
+        console.log(err);
       });
   }, []);
 

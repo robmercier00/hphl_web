@@ -17,6 +17,7 @@ function ShowCurrentPlayerStats() {
       })
       .catch((err) => {
         console.log('Error from ShowCurrentPlayerStats');
+        console.log(err);
       });
   }, []);
 

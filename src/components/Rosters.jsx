@@ -9,12 +9,15 @@ function Rosters() {
 
   useEffect(() => {
     axios
-      .get(`${linkUri}api/teams`)
+      .get(`${linkUri}api/teams`, {
+        params: { "currentSeason": true }
+      })
       .then((res) => {
         setTeams(res.data);
       })
       .catch((err) => {
         console.log('Error from Rosters');
+        console.log(err);
       });
   }, []);
 
