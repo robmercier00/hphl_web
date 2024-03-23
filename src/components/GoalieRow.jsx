@@ -7,10 +7,10 @@ const GoalieRow = ({player}) => {
     <>
       <tr>
         <td>{player.name}</td>
-        <td>{player.gamesPlayed || '0'}</td>
+        <td>{player.gamesPlayed || 0}</td>
         <td>{player.goalsAgainst || null}</td>
         <td>{player.shotsAgainst || null}</td>
-        <td>{((+player.goalsAgainst) / (+player.gamesPlayed)).toFixed(2) || null}</td>
+        <td>{((+player.goalsAgainst) / (+player.gamesPlayed)).toFixed(2) || 0}</td>
         <td>{player.savePercentage || null}</td>
         <td>{player.goals || null}</td>
         <td>{player.assists || null}</td>
