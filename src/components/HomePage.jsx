@@ -37,10 +37,7 @@ function HomePage() {
 
             <div className="table">
               <p>
-                  New season is fast approaching! Contact the commish to get on the roster of available players!
-              </p>
-              <p>
-                  Draft date/time is still TBD.
+                  New season starts 4/18/24! Ucoming schedule is below, and full schedule can be found on the <a href="/schedule">Schedule</a> page.
               </p>
               <p>
                 All captains are responsible for knowing the <a href="/rules">rules</a>, and for making their teams aware of the <a href="/rules">rules</a>.
