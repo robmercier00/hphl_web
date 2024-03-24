@@ -5,7 +5,7 @@ import ScheduleModule from "./ScheduleModule";
 
 function Schedule() {
   const [schedule, setSchedule] = useState([]);
-  const linkUri = "/";
+  const linkUri = import.meta.env.VITE_BASE_URI;
 
   useEffect(() => {
     axios
@@ -19,11 +19,11 @@ function Schedule() {
         console.log('Error from Schedule');
         console.log(err);
       });
-  }, []);
+  }, [linkUri]);
 
   const scheduleList =
     schedule.length === 0
-      ? <tr><td colSpan="6">No schedule found</td></tr>
+      ? <table><tbody><tr><td colSpan="6">No schedule found</td></tr></tbody></table>
       : Object.entries(schedule).map((schedule, k) => <ScheduleModule schedule={schedule} key={k} />);
 
   return (

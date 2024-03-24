@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import '../styles/App.css';
 
-function StandingsModule() {
+function StandingsModule({ standings }) {
   return (
-    <div className='Standings'>
-      <div className='container'>
-        <div className='col-md-12'>
-          <h2 className='display-5 text-center'>Standings</h2>
-        </div>
-              
-        <div className="table">
-          <p>Coming Soon!</p>
-        </div>
-      </div>
-    </div>
+    <>
+      <tr>
+        <td>{standings.name}</td>
+        <td>{standings.win}</td>
+        <td>{standings.loss}</td>
+        <td>{standings.tie}</td>
+        <td>{standings.points}</td>
+      </tr>
+    </>
   )
 }
 
