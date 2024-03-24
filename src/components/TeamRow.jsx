@@ -7,7 +7,7 @@ const TeamRow = ({team}) => {
     <>
       <table className="table table-hover table-responsive table-striped">
         <thead>
-          <tr className="date-header text-center"><td colspan="9"><div>{team.name}</div></td></tr>
+          <tr className="date-header text-center"><td colSpan="9"><div>{team.name}</div></td></tr>
           <tr>
             <td className="rosters-player">Player</td>
             <td className="rosters-games">Games Played</td>

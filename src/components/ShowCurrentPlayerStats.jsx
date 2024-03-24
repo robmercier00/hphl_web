@@ -5,7 +5,7 @@ import PlayerRow from './PlayerRow';
 
 function ShowCurrentPlayerStats() {
   const [players, setPlayers] = useState([]);
-  const linkUri = "/";
+  const linkUri = import.meta.env.VITE_BASE_URI;
 
   useEffect(() => {
     axios
@@ -19,7 +19,7 @@ function ShowCurrentPlayerStats() {
         console.log('Error from ShowCurrentPlayerStats');
         console.log(err);
       });
-  }, []);
+  }, [linkUri]);
 
   const playersList =
     players.length === 0

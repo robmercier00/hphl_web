@@ -37,7 +37,7 @@ function MainNav() {
             </li>
 
             <li className="nav-item ml-5 nav-box">
-              <a>
+              <a href="/standings">
                 Standings
               </a>
             </li>

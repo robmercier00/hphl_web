@@ -6,7 +6,7 @@ function ScheduleModule({ schedule }) {
   const gameSchedule = schedule[1];
   const parseDateSchedule =
     (gameSchedule.length === 0)
-      ? <tr><td colSpan="6">No games found</td></tr>
+      ? <table><tbody><tr><td colSpan="6">No games found</td></tr></tbody></table>
       : gameSchedule.map((game, k) => <GameModule game={game} key={k} />);
 
   return (

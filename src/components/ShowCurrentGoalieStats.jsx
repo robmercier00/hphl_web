@@ -5,7 +5,7 @@ import GoalieRow from './GoalieRow';
 
 function ShowCurrentGoalieStats() {
   const [players, setPlayers] = useState([]);
-  const linkUri = "/";
+  const linkUri = import.meta.env.VITE_BASE_URI;
 
   useEffect(() => {
     axios
@@ -19,7 +19,7 @@ function ShowCurrentGoalieStats() {
         console.log('Error from ShowCurrentGoalieStats');
         console.log(err);
       });
-  }, []);
+  }, [linkUri]);
 
   const playersList =
     players.length === 0

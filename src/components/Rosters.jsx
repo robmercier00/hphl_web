@@ -5,7 +5,7 @@ import TeamRow from './TeamRow';
 
 function Rosters() {
   const [teams, setTeams] = useState([]);
-  const linkUri = "/";
+  const linkUri = import.meta.env.VITE_BASE_URI;
 
   useEffect(() => {
     axios
@@ -19,11 +19,11 @@ function Rosters() {
         console.log('Error from Rosters');
         console.log(err);
       });
-  }, []);
+  }, [linkUri]);
 
   const teamsList =
     teams.length === 0
-      ? <tr><td colSpan="6">No teams found</td></tr>
+      ? <table><tbody><tr><td colSpan="6">No teams found</td></tr></tbody></table>
       : teams.map((team, k) => <TeamRow team={team} key={k} />);
 
   return (
