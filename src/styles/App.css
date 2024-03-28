@@ -156,6 +156,12 @@
   border-left: #0e0e0e 1px solid;
 }
 
+.announcements {
+  p {
+    margin-left: 32px;
+  }
+}
+
 @media screen and (max-width: 1122px) {
   .navbar .nav-button {
     background-color: #202526;

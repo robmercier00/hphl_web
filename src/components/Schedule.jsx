@@ -33,6 +33,11 @@ function Schedule() {
           <div className='col-md-12'>
               <h2 className='display-5 text-center'>Games Schedule</h2>
           </div>
+          <div>
+            <em>
+              All captains are responsible for knowing the <a href="/rules">rules</a>, and for making their teams aware of the <a href="/rules">rules</a>.
+            </em>
+          </div>
           { scheduleList }
         </div>
       </div>

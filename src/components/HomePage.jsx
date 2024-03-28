@@ -3,10 +3,12 @@ import '../styles/App.css';
 import axios from 'axios';
 import ScheduleModule from "./ScheduleModule";
 import StandingsModule from "./StandingsModule";
+import AnnouncementsModule from "./AnnouncementsModule";
 
 function HomePage() {
   const [schedule, setSchedule] = useState([]);
   const [standings, setStandings] = useState([]);
+  const [announcements, setAnnouncements] = useState([]);
   const linkUri = import.meta.env.VITE_BASE_URI;
 
   // Get schedule
@@ -37,6 +39,21 @@ function HomePage() {
       });
   }, [linkUri]);
 
+  // Get announcements
+  useEffect(() => {
+    axios
+      .get(`${linkUri}api/announcements`, {
+        params: { "mostRecent": true }
+      })
+      .then((res) => {
+        setAnnouncements(res.data);
+      })
+      .catch((err) => {
+        console.log('Error from Announcements');
+        console.log(err);
+      });
+  }, [linkUri]);
+
   // Set Schedule
   const scheduleList =
     schedule.length === 0
@@ -48,6 +65,11 @@ function HomePage() {
     standings.length === 0
       ? <tr><td colSpan="6">No standings found</td></tr>
       : standings.map((standings, k) => <StandingsModule standings={standings} key={k} />);
+
+  const announcementsList =
+    announcements.length === 0
+      ? <p></p>
+      : announcements.map((announcement, k) => <AnnouncementsModule announcement={announcement} key={k} />)
   
   return (
 
@@ -59,18 +81,18 @@ function HomePage() {
             </div>
 
             <div className="table">
-              <p>
-                  New season starts 4/18/24! Upcoming schedule is below, and full schedule can be found on the <a href="/schedule">Schedule</a> page.
-              </p>
-              <p>
-                All captains are responsible for knowing the <a href="/rules">rules</a>, and for making their teams aware of the <a href="/rules">rules</a>.
-              </p>
+              { announcementsList }
             </div>
           </div>
 
           <div className='container'>
             <div className="schedule-module">
               <h3>Schedule</h3>
+              <div>
+                <em>
+                  All captains are responsible for knowing the <a href="/rules">rules</a>, and for making their teams aware of the <a href="/rules">rules</a>.
+                </em>
+              </div>
               { scheduleList }
             </div>
 
