@@ -10,7 +10,7 @@ function AboutCup() {
       
       <div className="table">
         <div className="cup">
-          <img src="public/cup.jpeg" alt="The Teemu Cup, now known as the Blizzy Memorial Cup" />
+          <img src="cup.jpeg" alt="The Teemu Cup, now known as the Blizzy Memorial Cup" />
         </div>
         <div>
           <p>

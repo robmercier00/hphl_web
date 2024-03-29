@@ -10,7 +10,7 @@ function AboutCommishes() {
         
       <div className="table">
         <div className="commishes">
-          <img src="public/commishes.jpeg" alt="Mike Grages and James DiSalvo run a dope league" />
+          <img src="commishes.jpeg" alt="Mike Grages and James DiSalvo run a dope league" />
         </div>
         <div>
           <p>
