@@ -29,7 +29,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   /*Background image*/
-  background-image: url("hphl_bg.jpeg");
+  background-image: url("/hphl_bg.jpeg");
   background-repeat:repeat-y;
   background-position: top;
   background-size: 100%;
