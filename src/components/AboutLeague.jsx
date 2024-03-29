@@ -10,7 +10,7 @@ function AboutLeague() {
       
       <div className="table">
         <div className="history">
-          <img src="../../src/assets/history.jpeg" alt="Hockey team wins Teemu Cup"/>
+          <img src="public/history.jpeg" alt="Hockey team wins Teemu Cup"/>
         </div>
         <div>
           <p>
