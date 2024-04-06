@@ -38,6 +38,7 @@
 }
 
 .navbar .nav-box {
+  width: 1060;
   display: inline;
   margin: .75em;
 }
@@ -173,9 +174,12 @@
   background: darkgray;
 }
 
-@media screen and (max-width: 1122px) {
-  .navbar .nav-button {
-    background-color: #202526;
-    padding: 5px 12px;
-  }  
+.active-nav {
+  font-weight: 1000;
+  text-decoration: underline !important;
+  text-underline-offset: .35em;
+}
+
+.About {
+  max-width: 953px;
 }

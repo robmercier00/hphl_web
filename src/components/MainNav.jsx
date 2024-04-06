@@ -1,6 +1,9 @@
 import '../styles/App.css';
 
 function MainNav() {
+  // use window pathname to determine active nav item
+  const path = window.location.pathname;
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -19,61 +22,61 @@ function MainNav() {
         <div className="collapse navbar-collapse" id="navbarMenu">
           <ul className="navbar-nav">
             <li className="nav-item ml-5 nav-box">
-              <a href="/">
+              <a className={`${path === "/" ? "active-nav" : ""}`} href="/">
                 HPHL Home
               </a>
             </li>
 
             <li className="nav-item ml-5 nav-box">
-              <a href="/schedule">
+              <a className={`${path === "/schedule" ? "active-nav" : ""}`} href="/schedule">
                 Schedule
               </a>
             </li>
 
             <li className="nav-item ml-5 nav-box">
-              <a href="/rosters">
+              <a className={`${path === "/rosters" ? "active-nav" : ""}`} href="/rosters">
                 Rosters
               </a>
             </li>
 
             <li className="nav-item ml-5 nav-box">
-              <a href="/standings">
+              <a className={`${path === "/standings" ? "active-nav" : ""}`} href="/standings">
                 Standings
               </a>
             </li>
 
             <li className="nav-item ml-5 nav-box">
-              <a href="/playerStats">
+              <a className={`${path === "/playerStats" ? "active-nav" : ""}`} href="/playerStats">
                 Player Stats
               </a>
             </li>
 
             <li className="nav-item ml-5 nav-box">
-              <a>
+              <a className={`${path === "/pastSeasons" ? "active-nav" : ""}`}>
                 Past Seasons
               </a>
             </li>
 
             <li className="nav-item ml-5 nav-box">
-              <a href="/records">
+              <a className={`${path === "/records" ? "active-nav" : ""}`} href="/records">
                 All-Time Records
               </a>
             </li>
 
             <li className="nav-item ml-5 nav-box">
-              <a href="/media">
+              <a className={`${path === "/media" ? "active-nav" : ""}`} href="/media">
                 Media
               </a>
             </li>
 
             <li className="nav-item ml-5 nav-box">
-              <a href="/rules">
+              <a className={`${path === "/rules" ? "active-nav" : ""}`} href="/rules">
                 Rules
               </a>
             </li>
 
             <li className="nav-item ml-5 nav-box">
-              <a href="/about">
+              <a className={`${path === "/about" ? "active-nav" : ""}`} href="/about">
                 About
               </a>
             </li>

@@ -72,51 +72,49 @@ function HomePage() {
       : announcements.map((announcement, k) => <AnnouncementsModule announcement={announcement} key={k} />)
   
   return (
-
-      <div className="card">
-        <div className='Home'>
-          <div className='container'>
-            <div className='col-md-12'>
-              <h2 className='display-5 text-center'>Announcements</h2>
-            </div>
-
-            <div className="table">
-              { announcementsList }
-            </div>
+    <div className="card">
+      <div className='Home'>
+        <div className='container'>
+          <div className='col-md-12'>
+            <h2 className='display-5 text-center'>Announcements</h2>
           </div>
 
-          <div className='container'>
-            <div className="schedule-module">
-              <h3>Schedule</h3>
-              <div>
-                <em>
-                  All captains are responsible for knowing the <a href="/rules">rules</a>, and for making their teams aware of the <a href="/rules">rules</a>.
-                </em>
-              </div>
-              { scheduleList }
-            </div>
+          <div className="table">
+            { announcementsList }
+          </div>
+        </div>
 
-            <div className="standings-module">
-              <h3>Standings</h3>
-              <table className='table table-hover table-responsive table-striped standings-module'>
-                <thead>
-                  <tr>
-                    <td>Team</td>
-                    <td>W</td>
-                    <td>L</td>
-                    <td>T</td>
-                    <td>Pts</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  { standingsList }
-                </tbody>
-              </table>
+        <div className='container'>
+          <div className="schedule-module">
+            <h3>Schedule</h3>
+            <div>
+              <em>
+                All captains are responsible for knowing the <a href="/rules">rules</a>, and for making their teams aware of the <a href="/rules">rules</a>.
+              </em>
             </div>
+            { scheduleList }
+          </div>
+
+          <div className="standings-module">
+            <h3>Standings</h3>
+            <table className='table table-hover table-responsive table-striped standings-module'>
+              <thead>
+                <tr>
+                  <td>Team</td>
+                  <td>W</td>
+                  <td>L</td>
+                  <td>T</td>
+                  <td>Pts</td>
+                </tr>
+              </thead>
+              <tbody>
+                { standingsList }
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-
+    </div>
   )
 }
 
