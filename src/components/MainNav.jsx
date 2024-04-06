@@ -49,12 +49,6 @@ function MainNav() {
             </li>
 
             <li className="nav-item ml-5 nav-box">
-              <a href="/goalieStats">
-                Goalie Stats
-              </a>
-            </li>
-
-            <li className="nav-item ml-5 nav-box">
               <a>
                 Past Seasons
               </a>
@@ -63,6 +57,12 @@ function MainNav() {
             <li className="nav-item ml-5 nav-box">
               <a href="/records">
                 All-Time Records
+              </a>
+            </li>
+
+            <li className="nav-item ml-5 nav-box">
+              <a href="/media">
+                Media
               </a>
             </li>
 

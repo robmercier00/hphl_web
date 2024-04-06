@@ -2,22 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/App.css';
 
-const GoalieRow = ({player}) => {
+const GoalieRow = ({goalie}) => {
   return (
     <>
       <tr>
-        <td>{player.name}</td>
-        <td>{player.gamesPlayed || 0}</td>
-        <td>{player.goalsAgainst || null}</td>
-        <td>{player.shotsAgainst || null}</td>
+        <td>{goalie.name}</td>
+        <td>{goalie.gamesPlayed || 0}</td>
+        <td>{goalie.goalsAgainst || null}</td>
+        <td>{goalie.shotsAgainst || null}</td>
         <td>{
-          !isNaN(parseFloat(player.goalsAgainst))
-            ? ((+player.goalsAgainst) / (+player.gamesPlayed)).toFixed(2)
+          !isNaN(parseFloat(goalie.goalsAgainst))
+            ? ((+goalie.goalsAgainst) / (+goalie.gamesPlayed)).toFixed(2)
             : null
         }</td>
-        <td>{player.savePercentage || null}</td>
-        <td>{player.goals || null}</td>
-        <td>{player.assists || null}</td>
+        <td>{goalie.savePercentage || null}</td>
+        <td>{goalie.goals || null}</td>
+        <td>{goalie.assists || null}</td>
       </tr>
     </>
   );

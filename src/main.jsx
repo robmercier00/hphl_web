@@ -12,8 +12,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import MainNav from "./components/MainNav.jsx";
 import Footer from "./components/Footer.jsx";
 import HomePage from "./components/HomePage.jsx";
-import ShowCurrentPlayerStats from "./components/ShowCurrentPlayerStats.jsx";
-import ShowCurrentGoalieStats from "./components/ShowCurrentGoalieStats.jsx";
+import PlayerStats from "./components/PlayerStats.jsx";
+import Media from "./components/Media.jsx";
 import Rules from "./components/Rules.jsx";
 import Records from "./components/Records.jsx";
 import About from "./components/About.jsx";
@@ -25,8 +25,8 @@ import Standings from "./components/Standings.jsx";
 // Routes
 const router = createBrowserRouter([
   { path: "/", element: <HomePage /> },
-  { path: "/playerStats", element: <ShowCurrentPlayerStats /> },
-  { path: "/goalieStats", element: <ShowCurrentGoalieStats /> },
+  { path: "/playerStats", element: <PlayerStats /> },
+  { path: "/media", element: <Media /> },
   { path: "/rules", element: <Rules /> },
   { path: "/records", element: <Records /> },
   { path: "/about", element: <About /> },

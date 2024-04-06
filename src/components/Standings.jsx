@@ -26,7 +26,7 @@ function Standings() {
 
   return (
     <div className="card">
-      <div className='ShowTeamStandings'>
+      <div className='TeamStandings'>
         <div className='container'>
           <div className='col-md-12'>
               <h2 className='display-5 text-center'>Team Standings</h2>

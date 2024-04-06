@@ -3,6 +3,20 @@ import '../styles/App.css';
 import TeamPlayerRow from './TeamPlayerRow';
 
 const TeamRow = ({team}) => {
+  const sortedPlayers = team.players.sort((a, b) => {
+    if (typeof a.isGoalie !== 'undefined' && typeof b.isGoalie !== 'undefined') {
+      return 0;
+    }
+
+    if (typeof a.isGoalie !== 'undefined' && typeof b.isGoalie === 'undefined') {
+      return 1;
+    }
+
+    if (typeof a.isGoalie === 'undefined' && typeof b.isGoalie !== 'undefined') {
+      return -1;
+    }
+  });
+
   return (
     <>
       <table className="table table-hover table-responsive table-striped">
@@ -21,7 +35,7 @@ const TeamRow = ({team}) => {
           </tr>
         </thead>
         <tbody className="">
-          { team.players.map((player, k) => <TeamPlayerRow player={player} key={k} />) }
+          { sortedPlayers.map((player, k) => <TeamPlayerRow player={player} key={k} />) }
         </tbody>
       </table>
     </>
