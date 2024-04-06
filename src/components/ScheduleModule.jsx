@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import '../styles/App.css';
 import GameModule from './GameModule';
 

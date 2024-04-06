@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/App.css';
-import axios from 'axios';
 import AllTimePlayerStats from './AllTimePlayerStats';
 import AllTimeGoalieStats from './AllTimeGoalieStats';
 
@@ -23,10 +22,10 @@ function PlayerStats() {
     <div className="card">
       <div className='PlayerStats'>
         <div className='container'>
-          <div className={`stats-nav ${activeTab === 'playerStats' ? 'active' : 'inactive' }`} onClick={playerStats}>
+          <div className={`stats-nav ${activeTab === 'playerStats' ? 'active-nav' : 'inactive' }`} onClick={playerStats}>
               <h2 className='display-5 text-center'>Player Stats</h2>
           </div>
-          <div className={`stats-nav ${activeTab === 'goalieStats' ? 'active' : 'inactive' }`} onClick={goalieStats}>
+          <div className={`stats-nav ${activeTab === 'goalieStats' ? 'active-nav' : 'inactive' }`} onClick={goalieStats}>
               <h2 className='display-5 text-center'>Goalie Stats</h2>
           </div>
           <div className="card">

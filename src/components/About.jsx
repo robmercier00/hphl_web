@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
 import '../styles/App.css';
-import axios from 'axios';
 import AboutLeague from "./AboutLeague.jsx";
 import AboutCup from "./AboutCup.jsx";
 import AboutCommishes from "./AboutCommishes.jsx"
