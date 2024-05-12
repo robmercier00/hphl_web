@@ -1,10 +1,15 @@
 import '../styles/App.css';
+import GamePlayerStats from "./GamePlayerStats";
 
 
 function GameModule({ game }) {
+
   return (
-    <tbody>
-      <tr>
+    <>
+      <tr
+        className="game-expander"
+        data-bs-toggle="collapse"
+        data-bs-target={"#" + game._id}>
         <td className='text-center sched-time'>
           {game.time}
         </td>
@@ -21,7 +26,8 @@ function GameModule({ game }) {
           {game.awayTeamScore}
         </td>
       </tr>
-    </tbody>
+      <GamePlayerStats game={game}  />
+    </>
   )
 }
 

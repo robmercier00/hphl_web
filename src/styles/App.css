@@ -126,17 +126,17 @@
 }
 
 .sched-time {
-  width: 12%;
-  max-width: 12%;
+  width: 8%;
+  max-width: 8%;
 }
 .sched-team {
-  width: 25%;
-  max-width: 25%;
+  width: 28%;
+  max-width: 28%;
   border-left: #0e0e0e 1px solid;
 }
 .sched-score {
-  width: 16%;
-  max-width: 16%;
+  width: 12%;
+  max-width: 12%;
 }
 
 .rosters-player {
@@ -182,4 +182,18 @@
   font-weight: 1000;
   text-decoration: underline !important;
   text-underline-offset: .35em;
+}
+
+.game-expander {
+  cursor: pointer;
+}
+
+/* .game-expanded {
+
+} */
+
+.game-player-stats {
+  width: 49%;
+  display: inline-table;
+  margin: -28px 4px;
 }
