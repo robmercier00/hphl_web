@@ -1,12 +1,19 @@
 import '../styles/App.css';
+import { useState } from 'react';
 import GamePlayerStats from "./GamePlayerStats";
 
 
 function GameModule({ game }) {
+  const [gamePlayerStatsList, setGamePlayerStatsList] = useState('');
+
+  function getGamePlayerStats() {
+    setGamePlayerStatsList(game._id);
+  }
 
   return (
     <>
       <tr
+        onClick={getGamePlayerStats}
         className="game-expander"
         data-bs-toggle="collapse"
         data-bs-target={"#" + game._id}>
@@ -26,7 +33,12 @@ function GameModule({ game }) {
           {game.awayTeamScore}
         </td>
       </tr>
-      <GamePlayerStats game={game}  />
+      <tr className="collapse game-stats-collapse" id={game._id}>
+      { gamePlayerStatsList.length
+        ? <GamePlayerStats game={game} />
+        : <td></td>
+      }
+      </tr>
     </>
   )
 }
