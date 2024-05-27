@@ -1,11 +1,9 @@
 import "../styles/App.css";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import GameStats from "./GameStats";
 
 function GamePlayerStats({ game }) {
-  console.log("game");
-  console.log(game);
-
   const [playerStats, setPlayerStats] = useState([]);
   const linkUri = import.meta.env.VITE_BASE_URI;
 
@@ -26,11 +24,7 @@ function GamePlayerStats({ game }) {
   const playerStatsList =
     playerStats.length === 0
       ? <table><tbody><tr><td colSpan="6">No player stats</td></tr></tbody></table>
-      : Object.entries(playerStats).map((gameStats, k) => <GamePlayerStats game={game} gameStats={gameStats} key={k} />);
-
-  setGamePlayerStatsList(playerStatsList);
-  console.log("playerStatsList");
-  console.log(playerStatsList);
+      : Object.entries(playerStats).map((gameStats, k) => <GameStats game={game} gameStats={gameStats} key={k} />);
 
   return (
     <td colSpan="5">
@@ -44,14 +38,7 @@ function GamePlayerStats({ game }) {
               <td> Pts </td>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>home name</td>
-              <td>goals</td>
-              <td>assists</td>
-              <td>g + a</td>
-            </tr>
-          </tbody>
+          {{ playerStatsList }}
         </table>
       </div>
       <div className="game-player-stats">
