@@ -11,11 +11,11 @@ function GameStats({playerStats}) {
   return (
     <>
       <tr>
-        <td>{ playerStats[1].name + (playerStats[1].isGoalie ? " - G" : "") }</td>
-        <td>{ playerGoals }</td>
-        <td>{ +playerAssists }</td>
-        <td>{ playerShotsAgainst }</td>
-        <td>{ savePercentage }</td>
+        <td className={playerStats[1].isSub ? "sub-player" : ""}>{ playerStats[1].name + (playerStats[1].isGoalie ? " - G" : "") }</td>
+        <td className={playerStats[1].isSub ? "sub-player" : ""}>{ playerGoals }</td>
+        <td className={playerStats[1].isSub ? "sub-player" : ""}>{ +playerAssists }</td>
+        <td className={playerStats[1].isSub ? "sub-player" : ""}>{ playerShotsAgainst }</td>
+        <td className={playerStats[1].isSub ? "sub-player" : ""}>{ savePercentage }</td>
       </tr>
     </>
   )

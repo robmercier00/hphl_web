@@ -199,6 +199,10 @@
   font-size: .75em;
 }
 
+.sub-player {
+  font-style: italic;
+}
+
 @media screen and (max-width: 480px) {
   .game-player-stats {
     width: 100%;
