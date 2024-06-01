@@ -1,16 +1,16 @@
-import "../styles/App.css";
 import { useState, useEffect } from 'react';
+import "../styles/App.css";
 import axios from 'axios';
 import GameStats from "./GameStats";
 
-function GamePlayerStats({ game }) {
+function GamePlayerStats({ gameId }) {
   const [playerStats, setPlayerStats] = useState([]);
   const linkUri = import.meta.env.VITE_BASE_URI;
 
   useEffect(() => {
     axios
       .get(`${linkUri}api/gamePlayerStats`, {
-        params: { "gameId": game._id}
+        params: { "gameId": gameId }
       })
       .then((res) => {
         setPlayerStats(res.data);
@@ -19,45 +19,49 @@ function GamePlayerStats({ game }) {
         console.log('Error from Game Player Stats');
         console.log(err);
       });
-  }, [linkUri]);
+  }, [gameId, linkUri]);
 
-  const playerStatsList =
+  const homePlayerStatsList =
     playerStats.length === 0
-      ? <table><tbody><tr><td colSpan="6">No player stats</td></tr></tbody></table>
-      : Object.entries(playerStats).map((gameStats, k) => <GameStats game={game} gameStats={gameStats} key={k} />);
+      ? <tr><td colSpan="6">No data to show</td></tr>
+      : Object.entries(playerStats.homeTeamPlayers).map((homePlayerStats, k) => <GameStats playerStats={homePlayerStats} key={k} />);
+
+  const awayPlayerStatsList =
+    playerStats.length === 0
+      ? <tr><td colSpan="6">No data to show</td></tr>
+      : Object.entries(playerStats.awayTeamPlayers).map((awayPlayerStats, k) => <GameStats playerStats={awayPlayerStats} key={k} />);
 
   return (
-    <td colSpan="5">
+    <td colSpan="6">
       <div className="game-player-stats">
         <table className="table table-hover table-responsive table-striped schedule-module">
           <thead>
             <tr>
-              <td>Player</td>
+              <td><span className="game-team-identifier">Home </span>Player</td>
               <td> G </td>
               <td> A </td>
-              <td> Pts </td>
+              <td> SA </td>
+              <td> Sv % </td>
             </tr>
           </thead>
-          {{ playerStatsList }}
+          <tbody>
+            { homePlayerStatsList }
+          </tbody>
         </table>
       </div>
       <div className="game-player-stats">
         <table className="table table-hover table-responsive table-striped schedule-module">
           <thead>
             <tr>
-              <td>Player</td>
+              <td><span className="game-team-identifier">Away </span>Player</td>
               <td> G </td>
               <td> A </td>
-              <td> Pts </td>
+              <td> SA </td>
+              <td> Sv % </td>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>away name</td>
-              <td>goals</td>
-              <td>assists</td>
-              <td>g + a</td>
-            </tr>
+            { awayPlayerStatsList }
           </tbody>
         </table>
       </div>
