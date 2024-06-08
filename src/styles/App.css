@@ -125,18 +125,14 @@
   }
 }
 
-.sched-time {
-  width: 12%;
-  max-width: 12%;
-}
 .sched-team {
-  width: 25%;
-  max-width: 25%;
+  width: 32%;
+  max-width: 32%;
   border-left: #0e0e0e 1px solid;
 }
 .sched-score {
-  width: 16%;
-  max-width: 16%;
+  width: 10%;
+  max-width: 10%;
 }
 
 .rosters-player {
@@ -182,4 +178,46 @@
   font-weight: 1000;
   text-decoration: underline !important;
   text-underline-offset: .35em;
+}
+
+.game-expander {
+  cursor: pointer;
+}
+
+.game-player-stats {
+  width: 47.62%;
+  display: inline-table;
+  margin: -28px 10px;
+}
+
+.game-team-identifier {
+  display: none;
+}
+
+.expand-icon {
+  display: inline;
+  font-size: .75em;
+}
+
+.sub-player {
+  font-style: italic;
+}
+
+@media screen and (max-width: 480px) {
+  .game-player-stats {
+    width: 100%;
+    margin: -28px 0px;
+  }
+
+  .game-team-identifier {
+    display: inline;
+  }
+
+  .sched-time {
+    display: flex;
+
+    i {
+      margin-top: 25%;
+    }
+  }
 }

@@ -23,7 +23,9 @@ function ScheduleModule({ schedule }) {
             <td className='text-center sched-score'>Score</td>
           </tr>
         </thead>
-        { parseDateSchedule }
+        <tbody>
+          { parseDateSchedule }
+        </tbody>
       </table>
     </>
   )
