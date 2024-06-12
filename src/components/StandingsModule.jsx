@@ -9,6 +9,8 @@ function StandingsModule({ standings }) {
         <td>{standings.loss}</td>
         <td>{standings.tie}</td>
         <td>{standings.points}</td>
+        <td>{standings.goalsFor}</td>
+        <td>{standings.goalsAgainst}</td>
       </tr>
     </>
   )
