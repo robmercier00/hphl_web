@@ -105,6 +105,8 @@ function HomePage() {
                   <td>L</td>
                   <td>T</td>
                   <td>Pts</td>
+                  <td>GF</td>
+                  <td>GA</td>
                 </tr>
               </thead>
               <tbody>
