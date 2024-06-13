@@ -8,7 +8,6 @@ const TeamPlayerRow = ({player}) => {
           {player.name}
           { (player.isGoalie) ? ' - G' : ''}
         </td>
-        <td className="text-center rosters-games">{player.gamesPlayed}</td>
         <td className="text-center rosters-stats">{player.goals}</td>
         <td className="text-center rosters-stats">{player.assists}</td>
         <td className="text-center rosters-stats">{+player.goals + +player.assists}</td>
