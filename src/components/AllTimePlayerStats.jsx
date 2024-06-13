@@ -33,7 +33,6 @@ function AllTimePlayerStats() {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Games</th>
               <th>Goals</th>
               <th>Assists</th>
               <th>Points</th>
