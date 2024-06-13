@@ -27,15 +27,6 @@ function ScheduleModule({ schedule }) {
           { parseDateSchedule }
         </tbody>
       </table>
-      <div>
-          7:15 - 1st place Hoodsies vs winner of 6:15 3v6
-      </div>
-      <div>
-          7:45 - 2nd place Skins vs winner of 6:45 4v5
-      </div>
-      <div>
-          8:15 - Championship Game
-      </div>
     </>
   )
 }
