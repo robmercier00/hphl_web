@@ -23,7 +23,6 @@ const TeamRow = ({team}) => {
           <tr className="date-header text-center"><td colSpan="9"><div>{team.name}</div></td></tr>
           <tr>
             <td className="rosters-player">Player</td>
-            <td className="rosters-games">Games Played</td>
             <td className="text-center rosters-stats">Goals</td>
             <td className="text-center rosters-stats">Assists</td>
             <td className="text-center rosters-stats">Points</td>
