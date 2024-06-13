@@ -36,7 +36,6 @@ function AllTimePlayerStats() {
               <th>Goals</th>
               <th>Assists</th>
               <th>Points</th>
-              <th>Points Per Game</th>
             </tr>
           </thead>
           <tbody className="">{playersList}</tbody>

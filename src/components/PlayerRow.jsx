@@ -8,7 +8,6 @@ const PlayerRow = ({player}) => {
         <td>{player.goals}</td>
         <td>{player.assists}</td>
         <td>{+player.goals + +player.assists}</td>
-        <td>{ ((+player.goals + +player.assists) / +player.gamesPlayed).toFixed(2) }</td>
       </tr>
     </>
   );
