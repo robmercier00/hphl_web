@@ -20,7 +20,7 @@ const TeamRow = ({team}) => {
     <>
       <table className="table table-hover table-responsive table-striped">
         <thead>
-          <tr className="date-header text-center"><td colSpan="9"><div>{team.name}</div></td></tr>
+          <tr className="date-header text-center"><td colSpan="9"><div>{team.name} - {team.color}</div></td></tr>
           <tr>
             <td className="rosters-player">Player</td>
             <td className="text-center rosters-stats">Goals</td>
