@@ -93,15 +93,6 @@ function HomePage() {
               </em>
             </div>
             { scheduleList }
-            <div>
-              7:15 - 1st place Hoodsies vs lowest seed
-            </div>
-            <div>
-              7:45 - 2nd place Skins vs highest seed
-            </div>
-            <div>
-              8:15 - Championship Game
-            </div>
           </div>
 
           <div className="standings-module">
