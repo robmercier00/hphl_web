@@ -1,13 +1,15 @@
 import '../styles/App.css';
 
 const PlayerRow = ({player}) => {
+  const goals = +player.goals || 0;
+  const assists = +player.assists || 0;
   return (
     <>
       <tr>
         <td>{player.name}</td>
-        <td>{player.goals}</td>
-        <td>{player.assists}</td>
-        <td>{+player.goals + +player.assists}</td>
+        <td>{goals}</td>
+        <td>{assists}</td>
+        <td>{+goals + +assists}</td>
       </tr>
     </>
   );

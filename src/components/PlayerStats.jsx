@@ -1,37 +1,46 @@
 import { useState, useEffect } from 'react';
 import '../styles/App.css';
-import AllTimePlayerStats from './AllTimePlayerStats';
-import AllTimeGoalieStats from './AllTimeGoalieStats';
+import axios from 'axios';
+import PlayerRow from './PlayerRow';
 
 function PlayerStats() {
-  const [activeTab, setActiveTab] = useState([]);
+  const [isCurrentSeason] = useState(true);
+  const [players, setPlayers] = useState([]);
+  const linkUri = import.meta.env.VITE_BASE_URI;
 
   useEffect(() => {
-    setActiveTab("playerStats");
-  }, []);
+    axios
+      .get(`${linkUri}api/players`, {
+        params: { "isGoalie": false, "isCurrentSeason": isCurrentSeason }
+      })
+      .then((res) => {
+        setPlayers(res.data);
+      })
+      .catch((err) => {
+        console.log('Error from PlayerStats');
+        console.log(err);
+      });
+  }, [linkUri]);
 
-  function playerStats() {
-    setActiveTab("playerStats");
-  }
-
-  function goalieStats() {
-    setActiveTab("goalieStats");
-  }
+  const playersList =
+    players.length === 0
+      ? <tr><td colSpan="6">No players found</td></tr>
+      : players.map((player, k) => <PlayerRow player={player} key={k} />);
 
   return (
-    <div className="card">
-      <div className='PlayerStats'>
-        <div className='container'>
-          <div className={`stats-nav ${activeTab === 'playerStats' ? 'active-nav' : 'inactive' }`} onClick={playerStats}>
-              <h2 className='display-5 text-center'>Player Stats</h2>
-          </div>
-          <div className={`stats-nav ${activeTab === 'goalieStats' ? 'active-nav' : 'inactive' }`} onClick={goalieStats}>
-              <h2 className='display-5 text-center'>Goalie Stats</h2>
-          </div>
-          <div className="card">
-            { activeTab === 'goalieStats' ? <AllTimeGoalieStats /> : <AllTimePlayerStats /> }
-          </div>
-        </div>
+    <div className='PlayerStats'>
+      <div className='container'>
+        <table className="table table-hover table-responsive table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Goals</th>
+              <th>Assists</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody className="">{playersList}</tbody>
+        </table>
       </div>
     </div>
   );

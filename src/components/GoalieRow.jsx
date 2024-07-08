@@ -5,7 +5,6 @@ const GoalieRow = ({goalie}) => {
     <>
       <tr>
         <td>{goalie.name}</td>
-        <td>{goalie.gamesPlayed || 0}</td>
         <td>{goalie.goalsAgainst || null}</td>
         <td>{goalie.shotsAgainst || null}</td>
         <td>{
