@@ -2,7 +2,7 @@ import {BrowserRouter, Routes, Route, NavLink} from "react-router-dom";
 import '../styles/App.css';
 // Components import
 import HomePage from "./HomePage.jsx";
-import PlayerStats from "./PlayerStats.jsx";
+import PlayerStatsComponent from "./PlayerStatsComponent.jsx";
 import Media from "./Media.jsx";
 import Rules from "./Rules.jsx";
 import Records from "./Records.jsx";
@@ -82,7 +82,7 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/playerStats" element={<PlayerStats />} />
+          <Route path="/playerStats" element={<PlayerStatsComponent />} />
           <Route path="/media" element={<Media />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/records" element={<Records />} />

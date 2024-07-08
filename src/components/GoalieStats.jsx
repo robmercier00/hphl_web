@@ -3,20 +3,21 @@ import '../styles/App.css';
 import axios from 'axios';
 import GoalieRow from './GoalieRow';
 
-function AllTimeGoalieStats() {
+function GoalieStats() {
+  const [isCurrentSeason] = useState(true);
   const [goalies, setGoalies] = useState([]);
   const linkUri = import.meta.env.VITE_BASE_URI;
 
   useEffect(() => {
     axios
       .get(`${linkUri}api/players`, {
-        params: { "isGoalie": true }
+        params: { "isGoalie": true, "isCurrentSeason": isCurrentSeason }
       })
       .then((res) => {
         setGoalies(res.data);
       })
       .catch((err) => {
-        console.log('Error from AllTimeGoalieStats');
+        console.log('Error from GoalieStats');
         console.log(err);
       });
   }, [linkUri]);
@@ -27,13 +28,12 @@ function AllTimeGoalieStats() {
       : goalies.map((goalie, k) => <GoalieRow goalie={goalie} key={k} />);
 
   return (
-    <div className='AllTimeGoalieStats'>
+    <div className='GoalieStats'>
       <div className='container'>
         <table className="table table-hover table-responsive table-striped">
           <thead>
             <tr>
               <th>Name</th>
-              <th>Games</th>
               <th>Goals Against</th>
               <th>Shots Against</th>
               <th>GAA</th>
@@ -49,4 +49,4 @@ function AllTimeGoalieStats() {
   );
 }
 
-export default AllTimeGoalieStats;
+export default GoalieStats;
