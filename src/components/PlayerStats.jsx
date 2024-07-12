@@ -6,6 +6,7 @@ import PlayerRow from './PlayerRow';
 function PlayerStats() {
   const [isCurrentSeason] = useState(true);
   const [players, setPlayers] = useState([]);
+  const [sorting, setSorting] = useState({ field: 'points', ascending: false })
   const linkUri = import.meta.env.VITE_BASE_URI;
 
   useEffect(() => {
@@ -14,18 +15,55 @@ function PlayerStats() {
         params: { "isGoalie": false, "isCurrentSeason": isCurrentSeason }
       })
       .then((res) => {
-        setPlayers(res.data);
+        // Copy array to prevent data mutation
+        const playersCopy = [...res.data];
+        playersCopy.map((player) => {
+          player.goals = +player.goals || 0;
+          player.assists = +player.assists || 0;
+          player.points = (player.goals + player.assists) || 0;
+        });
+
+        // Apply sorting
+        const sortedPlayers = playersCopy.sort((a, b) => {
+          return a[sorting.field].toString().localeCompare(b[sorting.field].toString());
+        });
+        // Replace players with sorted players
+        setPlayers(
+          // Decide either players sorted by ascending or descending order
+          sorting.ascending ? sortedPlayers : sortedPlayers.reverse()
+        );
       })
       .catch((err) => {
         console.log('Error from PlayerStats');
         console.log(err);
       });
-  }, [linkUri]);
+  }, [linkUri, sorting]);
+
+  // useEffect(() => {
+  //   // Copy array to prevent data mutation
+  //   const playersCopy = [...players];
+
+  //   // Apply sorting
+  //   const sortedPlayers = playersCopy.sort((a, b) => {
+  //     return a[sorting.key].localeCompare(b[sorting.key]);
+  //   });
+
+  //   // Replace players with sorted players
+  //   setPlayers(
+  //     // Decide either players sorted by ascending or descending order
+  //     sorting.ascending ? sortedPlayers : sortedPlayers.reverse()
+  //   );
+  // }, [players, sorting]);
 
   const playersList =
     players.length === 0
       ? <tr><td colSpan="6">No players found</td></tr>
       : players.map((player, k) => <PlayerRow player={player} key={k} />);
+
+  function applySorting(key, ascending) {
+    console.log("no sorting yet");
+    // setSorting({ key: key, ascending: ascending });
+  }
 
   return (
     <div className='PlayerStats'>
@@ -34,9 +72,9 @@ function PlayerStats() {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Goals</th>
-              <th>Assists</th>
-              <th>Points</th>
+              <th className="sortable-header" onClick={() => applySorting('goals', !sorting.ascending)}>Goals</th>
+              <th className="sortable-header" onClick={() => applySorting('assists', !sorting.ascending)}>Assists</th>
+              <th className="sortable-header" onClick={() => applySorting('points', !sorting.ascending)}>Points</th>
             </tr>
           </thead>
           <tbody className="">{playersList}</tbody>
