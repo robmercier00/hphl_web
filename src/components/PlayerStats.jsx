@@ -25,7 +25,7 @@ function PlayerStats() {
 
         // Apply sorting
         const sortedPlayers = playersCopy.sort((a, b) => {
-          return a[sorting.field].toString().localeCompare(b[sorting.field].toString());
+          return a[sorting.field] - b[sorting.field];
         });
         // Replace players with sorted players
         setPlayers(
