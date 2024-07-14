@@ -20,13 +20,15 @@ function PlayerStats() {
         playersCopy.map((player) => {
           player.goals = +player.goals || 0;
           player.assists = +player.assists || 0;
-          player.points = (player.goals + player.assists) || 0;
+          player.points = (+player.goals + +player.assists) || 0;
         });
 
         // Apply sorting
         const sortedPlayers = playersCopy.sort((a, b) => {
-          return a[sorting.field] - b[sorting.field];
+          sorting.field = sorting.field || 'points';
+          return +a[sorting.field] > +b[sorting.field] ? 1 : -1;
         });
+
         // Replace players with sorted players
         setPlayers(
           // Decide either players sorted by ascending or descending order
@@ -39,30 +41,13 @@ function PlayerStats() {
       });
   }, [linkUri, sorting]);
 
-  // useEffect(() => {
-  //   // Copy array to prevent data mutation
-  //   const playersCopy = [...players];
-
-  //   // Apply sorting
-  //   const sortedPlayers = playersCopy.sort((a, b) => {
-  //     return a[sorting.key].localeCompare(b[sorting.key]);
-  //   });
-
-  //   // Replace players with sorted players
-  //   setPlayers(
-  //     // Decide either players sorted by ascending or descending order
-  //     sorting.ascending ? sortedPlayers : sortedPlayers.reverse()
-  //   );
-  // }, [players, sorting]);
-
   const playersList =
     players.length === 0
       ? <tr><td colSpan="6">No players found</td></tr>
       : players.map((player, k) => <PlayerRow player={player} key={k} />);
 
   function applySorting(key, ascending) {
-    console.log("no sorting yet");
-    // setSorting({ key: key, ascending: ascending });
+    setSorting({ field: key, ascending: ascending });
   }
 
   return (
