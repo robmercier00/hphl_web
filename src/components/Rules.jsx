@@ -72,7 +72,7 @@ function Footer() {
             To avoid a forfeit a team must have at least 2 skaters and a goalie dressed at game time.<br />
             There will be no unapproved out of league substitutions allowed.<br />
             If a team is short players, they may pick up subs after confirming with the opposing team's captain.<br />
-            Due to the pandemic, games-played requirements for playoff eligibility have been waived.
+            A team can only play their rostered players for playoff games. Non-roster subs will not be allowed in any playoff game.
           </div>
           <div className="section">
             <h6>Game Times and Rules:</h6>
