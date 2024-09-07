@@ -6,21 +6,27 @@ const TeamPlayerRow = ({player}) => {
       <tr>
         <td>
           {player.name}
-          { (player.isGoalie) ? ' - G' : ''}
+          { (player.isGoalie) ? " - G" : ""}
         </td>
         <td className="text-center rosters-stats">{player.goals}</td>
         <td className="text-center rosters-stats">{player.assists}</td>
-        <td className="text-center rosters-stats">{+player.goals + +player.assists}</td>
+        <td className="text-center rosters-stats">
+          {(+player.goals + +player.assists) || null}
+        </td>
         <td></td>
-        <td className="text-center rosters-ga-stats">{(player.isGoalie) ? player.goalsAgainst : ''}</td>
+        <td className="text-center rosters-ga-stats">
+          {(player.isGoalie) ? player.goalsAgainst : ""}
+        </td>
         <td className="text-center rosters-stats">{
           (player.isGoalie)
             ? !isNaN(parseFloat(player.goalsAgainst))
               ? (+player.goalsAgainst / +player.gamesPlayed).toFixed(2)
               : null
-            : ''
+            : ""
         }</td>
-        <td className="text-center rosters-stats">{(player.isGoalie) ? player.shutouts : ''}</td>
+        <td className="text-center rosters-stats">
+          {(player.isGoalie) ? player.shutouts : ""}
+        </td>
       </tr>
     </>
   );
