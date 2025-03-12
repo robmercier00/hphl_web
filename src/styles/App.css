@@ -77,6 +77,25 @@
     }
 }
 
+a {
+  cursor: pointer;
+}
+
+.show-hide-create {
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.bi-chevron-right, .bi-chevron-down {
+  font-size: 1.25rem;
+  margin-top: 8px;
+}
+
+.alert-hidden {
+  opacity: 0;
+  transition: all 250ms linear 1s;
+}
+
 .about-league {
   min-height: 345px;
 }
@@ -207,6 +226,36 @@
   cursor: pointer;
 }
 
+.login-fields {
+  display: grid;
+  margin-bottom: -20px;
+
+  div {
+    margin: 24px 10px;
+    flex-basis: min-content;
+
+    input {
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+}
+
+.new-season-form {
+  display:inline-table;
+}
+
+.pwd {
+  cursor: pointer;
+  font-size: .6em;
+}
+
+.password-error {
+  margin-top: -20px;
+  font-size: .8em;
+  color: red;
+}
+
 @media screen and (max-width: 480px) {
   .game-player-stats {
     width: 100%;
@@ -223,5 +272,9 @@
     i {
       margin-top: 25%;
     }
+  }
+
+  .new-season-form {
+    /* display: block; */
   }
 }
