@@ -24,29 +24,30 @@ async function loginUser(credentials) {
     return tokenValue;
 }
 
-async function verifyUser(credentials) {
-  const linkUri = import.meta.env.VITE_BASE_URI;
-  // Post username
-  const tokenValue = await axios
-    .post(`${linkUri}api/verify`, credentials, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    })
-    .then(response => {
-      return response.data;
-    })
-    .catch((err) => {
-      console.log('Error verifying user');
-      console.log(err);
-    });
-
-    return tokenValue.token;
-}
-
 export default function Login({ setToken, setUser }) {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+
+  const handleForgotPassword = async () => {
+    const linkUri = import.meta.env.VITE_BASE_URI;
+    // Post username
+    const tokenValue = await axios
+      .post(`${linkUri}api/verify`, {username: username}, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+      .then(response => {
+        return response.data;
+      })
+      .catch((err) => {
+        console.log('Error verifying user');
+        console.log(err);
+      });
+
+    setUser(username);
+    setToken(tokenValue.token);
+  }
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -76,7 +77,7 @@ export default function Login({ setToken, setUser }) {
         </form>
         { username &&
           <div>
-            <span className="pwd" onClick={ () => verifyUser({username}) }>Forgot Password?</span>
+            <span className="pwd" onClick={ () => handleForgotPassword() }>Forgot Password?</span>
           </div>
         }
 			</div>
