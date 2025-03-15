@@ -17,21 +17,23 @@ export default function Player({ token, unsetToken }) {
 
   useEffect(() => {
     if (tokenId) {
-      axios
-        .get(`${linkUri}api/verify`, {
-          params: { "token": tokenId }
-        })
-        .then((res) => {
-          setIsValidUser(res.data.isValid);
-  
-          if (res && res.data && !res.data.isValid) {
-            unsetToken();
-          }
-        })
-        .catch((err) => {
-          console.log('Error from Get Players');
-          console.log(err);
-        });
+      (async () => {
+        axios
+          .get(`${linkUri}api/verify`, {
+            params: { "token": tokenId }
+          })
+          .then((res) => {
+            setIsValidUser(res.data.isValid);
+    
+            if (res && res.data && !res.data.isValid) {
+              unsetToken();
+            }
+          })
+          .catch((err) => {
+            console.log('Error from Get Players');
+            console.log(err);
+          });
+      });
     } else {
       navigate("/admin");
     }

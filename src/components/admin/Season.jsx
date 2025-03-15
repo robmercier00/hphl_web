@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
 
 export default function Season({ token, unsetToken }) {
-  const [isValidUser, setIsValidUser] = useState(false);
+  const [isValidUser, setIsValidUser] = useState(true);
   const [season, setSeason] = useState();
   const [seasonName, setSeasonName] = useState();
   const [seasonStartDate, setSeasonStartDate] = useState();
@@ -19,28 +19,27 @@ export default function Season({ token, unsetToken }) {
 
   useEffect(() => {
     if (tokenId) {
-      axios
-        .get(`${linkUri}api/verify`, {
-          params: { "token": tokenId }
-        })
-        .then((res) => {
-          setIsValidUser(res.data.isValid);
-  
-          if (res && !res.data.isValid) {
-            unsetToken();
-          }
-        })
-        .catch((err) => {
-          console.log('Error from Get Players');
-          console.log(err);
-        });
+      (async () => {
+        await axios
+          .get(`${linkUri}api/verify`, {
+            params: { "token": tokenId }
+          })
+          .then((res) => {
+            setIsValidUser(res.data.isValid);
+    
+            if (res && !res.data.isValid) {
+              unsetToken();
+            }
+          })
+          .catch((err) => {
+            console.log('Error from Get Players');
+            console.log(err);
+          });
+      });
     } else {
       navigate("/admin");
     }
   }, [linkUri, tokenId, unsetToken, navigate]);
-
-  useEffect(() => {
-  }, [isValidUser]);
 
   useEffect(() => {
     if (isValidUser) {
