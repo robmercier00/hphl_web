@@ -1,31 +1,61 @@
 import '../../styles/App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
 
-export default function Player() {
+export default function Player({ token, unsetToken }) {
+  const [isValidUser, setIsValidUser] = useState(false);
   const [player, setPlayer] = useState();
   const [playerName, setPlayerName] = useState();
   const [isGoalie, setIsGoalie] = useState(true);
   const [updateConfirmed, setUpdateConfirmed] = useState(false);
-
+  const navigate = useNavigate();
   const linkUri = import.meta.env.VITE_BASE_URI;
   const playerId = window.location.search.split("=")[1];
+  const tokenId = token;
 
   useEffect(() => {
-    axios
-      .get(`${linkUri}api/players/${playerId}`)
-      .then((playerData) => {
-        const player = playerData.data[0];
+    if (tokenId) {
+      axios
+        .get(`${linkUri}api/verify`, {
+          params: { "token": tokenId }
+        })
+        .then((res) => {
+          setIsValidUser(res.data.isValid);
+  
+          if (res && res.data && !res.data.isValid) {
+            unsetToken();
+          }
+        })
+        .catch((err) => {
+          console.log('Error from Get Players');
+          console.log(err);
+        });
+    } else {
+      navigate("/admin");
+    }
+  }, [linkUri, tokenId, unsetToken, navigate]);
 
-        setPlayer(player);
-        setPlayerName(player.name);
-        setIsGoalie(player.isGoalie);
-      })
-      .catch((err) => {
-        console.log('Error from Get Players');
-        console.log(err);
-      });
-  }, [linkUri, playerId]);
+  useEffect(() => {
+    if (isValidUser) {
+      axios
+        .get(`${linkUri}api/players/${playerId}`)
+        .then((playerData) => {
+          const player = playerData.data[0];
+  
+          setPlayer(player);
+          setPlayerName(player.name);
+          setIsGoalie(player.isGoalie);
+        })
+        .catch((err) => {
+          console.log('Error from Get Players');
+          console.log(err);
+        });
+    } else {
+      navigate("/admin");
+    }
+  }, [linkUri, isValidUser, playerId, navigate]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -86,3 +116,8 @@ export default function Player() {
     </div>
   )
 }
+
+Player.propTypes = {
+  token: PropTypes.string,
+  unsetToken: PropTypes.func.isRequired
+};

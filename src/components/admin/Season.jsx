@@ -1,37 +1,70 @@
 import '../../styles/App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
 
-export default function Season() {
+export default function Season({ token, unsetToken }) {
+  const [isValidUser, setIsValidUser] = useState(false);
   const [season, setSeason] = useState();
   const [seasonName, setSeasonName] = useState();
   const [seasonStartDate, setSeasonStartDate] = useState();
   const [seasonEndDate, setSeasonEndDate] = useState();
   const [isCurrentSeason, setIsCurrentSeason] = useState(true);
   const [updateConfirmed, setUpdateConfirmed] = useState(false);
-
+  const navigate = useNavigate();
   const linkUri = import.meta.env.VITE_BASE_URI;
   const seasonId = window.location.search.split("=")[1];
+  const tokenId = token;
 
   useEffect(() => {
-    axios
-      .get(`${linkUri}api/seasons/${seasonId}`)
-      .then((seasonData) => {
-        const season = seasonData.data[0];
-        const startDate = new Date(season.start_date).toISOString().split("T")[0];
-        const endDate = new Date(season.end_date).toISOString().split("T")[0];
+    if (tokenId) {
+      axios
+        .get(`${linkUri}api/verify`, {
+          params: { "token": tokenId }
+        })
+        .then((res) => {
+          setIsValidUser(res.data.isValid);
+  
+          if (res && !res.data.isValid) {
+            unsetToken();
+          }
+        })
+        .catch((err) => {
+          console.log('Error from Get Players');
+          console.log(err);
+        });
+    } else {
+      navigate("/admin");
+    }
+  }, [linkUri, tokenId, unsetToken, navigate]);
 
-        setSeason(season);
-        setSeasonName(season.name);
-        setIsCurrentSeason(season.currentSeason);
-        setSeasonStartDate(startDate);
-        setSeasonEndDate(endDate);
-      })
-      .catch((err) => {
-        console.log('Error from Get Seasons');
-        console.log(err);
-      });
-  }, [linkUri, seasonId]);
+  useEffect(() => {
+  }, [isValidUser]);
+
+  useEffect(() => {
+    if (isValidUser) {
+      axios
+        .get(`${linkUri}api/seasons/${seasonId}`)
+        .then((seasonData) => {
+          const season = seasonData.data[0];
+          const startDate = new Date(season.start_date).toISOString().split("T")[0];
+          const endDate = new Date(season.end_date).toISOString().split("T")[0];
+
+          setSeason(season);
+          setSeasonName(season.name);
+          setIsCurrentSeason(season.currentSeason);
+          setSeasonStartDate(startDate);
+          setSeasonEndDate(endDate);
+        })
+        .catch((err) => {
+          console.log('Error from Get Seasons');
+          console.log(err);
+        });
+    } else {
+      navigate("/admin");
+    }
+  }, [linkUri, isValidUser, seasonId, navigate]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -112,3 +145,8 @@ export default function Season() {
     </div>
   )
 }
+
+Season.propTypes = {
+  token: PropTypes.string,
+  unsetToken: PropTypes.func.isRequired
+};

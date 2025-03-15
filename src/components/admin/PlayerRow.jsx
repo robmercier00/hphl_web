@@ -1,7 +1,17 @@
 import '../../styles/App.css';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
 
-export default function PlayerRow({player}) {
+export default function PlayerRow({ isValidUser, player }) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isValidUser) {
+      navigate("/admin");
+    }
+  }, [isValidUser, navigate]);
+
   return (
     <>
       <tr className="row">
@@ -20,5 +30,6 @@ export default function PlayerRow({player}) {
 }
 
 PlayerRow.propTypes = {
+  isValidUser: PropTypes.bool,
   player: PropTypes.object.isRequired
 }

@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import SeasonsList from './SeasonsList.jsx';
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 export default function SeasonList({ unsetToken, token }) {
   const [isValidUser, setIsValidUser] = useState(false);
@@ -12,33 +13,38 @@ export default function SeasonList({ unsetToken, token }) {
   const [isCurrentSeason, setIsCurrentSeason] = useState(true);
   const [showHideCreate, setShowHideCreate] = useState(false);
   const [createConfirmed, setCreateConfirmed] = useState(false);
+  const navigate = useNavigate();
   const linkUri = import.meta.env.VITE_BASE_URI;
   const tokenId = token;
 
   useEffect(() => {
-    axios
-      .get(`${linkUri}api/verify`, {
-        params: { "token": tokenId }
-      })
-      .then((res) => {
-        setIsValidUser(res.data.isValid);
-
-        if (res && !res.data.isValid) {
-          unsetToken();
-        }
-      })
-      .catch((err) => {
-        console.log('Error from Get Seasons');
-        console.log(err);
-      });
-  }, [linkUri, tokenId, unsetToken]);
+    if (tokenId) {
+      axios
+        .get(`${linkUri}api/verify`, {
+          params: { "token": tokenId }
+        })
+        .then((res) => {
+          setIsValidUser(res.data.isValid);
+  
+          if (res && !res.data.isValid) {
+            unsetToken();
+          }
+        })
+        .catch((err) => {
+          console.log('Error from Get Seasons');
+          console.log(err);
+        });
+    } else {
+      navigate("/admin");
+    }
+  }, [linkUri, tokenId, unsetToken, navigate]);
 
   useEffect(() => {
   }, [isValidUser]);
 
   const seasonsList =
     isValidUser
-    ? <SeasonsList isValidUser={isValidUser} token={token} unsetToken={unsetToken} />
+    ? <SeasonsList isValidUser={isValidUser} />
     : ''
 
   const handleSubmit = async e => {
