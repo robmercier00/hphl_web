@@ -1,30 +1,16 @@
 import '../../styles/App.css';
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
 
-export default function SeasonRow({season, token, unsetToken}) {
-  const [isValidUser, setIsValidUser] = useState(false);
-  const tokenId = token;
-  const linkUri = import.meta.env.VITE_BASE_URI;
+export default function SeasonRow({season, isValidUser}) {
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`${linkUri}api/verify`, {
-        params: {token: tokenId}
-      })
-      .then((res) => {
-        setIsValidUser(res.data.isValid);
-
-        if (res && !res.data.isValid) {
-          unsetToken();
-        }
-      })
-      .catch((err) => {
-        console.log('Error from Get Seasons');
-        console.log(err);
-      });
-  }, [linkUri, tokenId, unsetToken]);
+    if (!isValidUser) {
+      navigate("/admin");
+    }
+  }, [isValidUser, navigate]);
 
   return (
     <>
@@ -47,6 +33,5 @@ export default function SeasonRow({season, token, unsetToken}) {
 
 SeasonRow.propTypes = {
   season: PropTypes.object.isRequired,
-  token: PropTypes.string,
-  unsetToken: PropTypes.func
+  isValidUser: PropTypes.bool
 }
