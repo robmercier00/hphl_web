@@ -18,7 +18,7 @@ export default function Player({ token, unsetToken }) {
   useEffect(() => {
     if (tokenId) {
       (async () => {
-        axios
+        await axios
           .get(`${linkUri}api/verify`, {
             params: { "token": tokenId }
           })
