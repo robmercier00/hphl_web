@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
 
 export default function Player({ token, unsetToken }) {
-  const [isValidUser, setIsValidUser] = useState(false);
+  const [isValidUser, setIsValidUser] = useState(true);
   const [player, setPlayer] = useState();
   const [playerName, setPlayerName] = useState();
   const [isGoalie, setIsGoalie] = useState(true);

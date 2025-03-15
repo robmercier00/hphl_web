@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
 
-export default function PlayerRow({ isValidUser, player }) {
+export default function PlayerRow({player, isValidUser}) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,6 +30,6 @@ export default function PlayerRow({ isValidUser, player }) {
 }
 
 PlayerRow.propTypes = {
-  isValidUser: PropTypes.bool,
-  player: PropTypes.object.isRequired
+  player: PropTypes.object.isRequired,
+  isValidUser: PropTypes.bool
 }

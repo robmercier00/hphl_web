@@ -32,7 +32,7 @@ export default function Season({ token, unsetToken }) {
             }
           })
           .catch((err) => {
-            console.log('Error from Get Players');
+            console.log('Error from Get Season');
             console.log(err);
           });
       });
@@ -57,7 +57,7 @@ export default function Season({ token, unsetToken }) {
           setSeasonEndDate(endDate);
         })
         .catch((err) => {
-          console.log('Error from Get Seasons');
+          console.log('Error from Get Season');
           console.log(err);
         });
     } else {
