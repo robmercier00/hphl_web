@@ -8,11 +8,11 @@ export default function GameStats({ playerStats, setPlayers, canEdit }) {
   const [assists, setAssists] = useState(playerStats.assists ?? '');
   const [goalsAgainst, setGoalsAgainst] = useState(playerStats.goalsAgainst ?? '');
   const [shotsAgainst, setShotsAgainst] = useState(playerStats.shotsAgainst ?? '');
-  const savePercentage = playerStats.isGoalie
+  const savePercentage = (playerStats.isGoalie || (playerStats.goalsAgainst &&playerStats.shotsAgainst))
       ? (Math.round(
         ((+playerStats.shotsAgainst - +playerStats.goalsAgainst) / +playerStats.shotsAgainst) * 1000
         ) / 1000).toFixed(3)
-      : null
+      : 0
 
   const setPlayerGameName = ((e) => {
     setPlayerName(e);
