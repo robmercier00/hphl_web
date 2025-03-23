@@ -40,6 +40,7 @@ function Inner() {
       <Route path="/admin/manage-players" element={<PlayerList token={token} unsetToken={unsetToken} />} />
       <Route path="/admin/season" element={<Season token={token} unsetToken={unsetToken} />} />
       <Route path="/admin/player" element={<Player token={token} unsetToken={unsetToken} />} />
+      <Route path="/admin/manage-schedule" element={<Schedule token={token} unsetToken={unsetToken} />} />
       <Route path="/admin/teams" element={<TeamsList token={token} unsetToken={unsetToken} />} />
     </Routes>
   )

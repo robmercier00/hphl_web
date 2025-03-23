@@ -20,6 +20,9 @@ export default function Admin({ token, setToken, unsetToken}) {
           <a href="/admin/manage-seasons">Manage Seasons</a>
         </div>
         <div className="col">
+          <a href="/admin/manage-schedule">Manage Current Season Schedule</a>
+        </div>
+        <div className="col">
           <a href="/admin/manage-players">Manage Players</a>
         </div>
 			</div>
