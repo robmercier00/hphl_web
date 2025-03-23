@@ -56,7 +56,7 @@ export default function GameStats({ playerStats, setPlayers, canEdit }) {
             <input type="number" min="0" className="form-control col" value={ goals ?? '' } onChange={e => setPlayerGoals(e.target.value)} />
           }
           {!canEdit &&
-            <span>{ playerStats.oals }</span>
+            <span>{ playerStats.goals }</span>
           }
         </td>
         <td className={playerStats.isSub ? "sub-player" : ""}>
