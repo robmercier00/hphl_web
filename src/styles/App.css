@@ -199,14 +199,19 @@ a {
   text-underline-offset: .35em;
 }
 
-.game-expander {
+.add-player-stats {
   cursor: pointer;
 }
 
 .game-player-stats {
-  width: 47.62%;
+  width: 48.55%;
   display: inline-table;
-  margin: -28px 10px;
+  margin: -28px 6px;
+}
+
+.game-player-stats-edit {
+  width: 100%;
+  margin: -28px 0px;
 }
 
 .game-team-identifier {
@@ -257,7 +262,7 @@ a {
 }
 
 @media screen and (max-width: 480px) {
-  .game-player-stats {
+  .game-player-stats, .game-player-stats-edit {
     width: 100%;
     margin: -28px 0px;
   }

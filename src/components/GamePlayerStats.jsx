@@ -1,47 +1,40 @@
-import { useState, useEffect } from 'react';
 import "../styles/App.css";
-import axios from 'axios';
+import { useLocation } from "react-router-dom";
 import GameStats from "./GameStats";
+import PropTypes from "prop-types";
 
-function GamePlayerStats({ gameId }) {
-  const [playerStats, setPlayerStats] = useState([]);
-  const linkUri = import.meta.env.VITE_BASE_URI;
+export default function GamePlayerStats({ gameId, gameHomePlayerStatsList, setHomePlayers, gameAwayPlayerStatsList, setAwayPlayers, canEdit }) {
+  const location = useLocation();
+  const isAdmin = location.pathname.split("/")[1] === 'admin';
+  const setHomePlayerStats = (() => {
+    setHomePlayers(gameHomePlayerStatsList);
+  });
+  const setAwayPlayerStats = (() => {
+    setAwayPlayers(gameAwayPlayerStatsList);
+  });
 
-  useEffect(() => {
-    axios
-      .get(`${linkUri}api/gamePlayerStats`, {
-        params: { "gameId": gameId }
-      })
-      .then((res) => {
-        setPlayerStats(res.data);
-      })
-      .catch((err) => {
-        console.log('Error from Game Player Stats');
-        console.log(err);
-      });
-  }, [gameId, linkUri]);
-
-  const homePlayerStatsList =
-    playerStats.length === 0
+  let homePlayerStatsList =
+    gameHomePlayerStatsList.length === 0
       ? <tr><td colSpan="6">No data to show</td></tr>
-      : Object.entries(playerStats.homeTeamPlayers).map((homePlayerStats, k) => <GameStats playerStats={homePlayerStats} key={k} />);
+      : gameHomePlayerStatsList.map((homePlayerStats, key) => <GameStats gameId={gameId} homeAway="home" playerStats={homePlayerStats} setPlayers={setHomePlayerStats} canEdit={canEdit} key={key} />);
 
-  const awayPlayerStatsList =
-    playerStats.length === 0
+  let awayPlayerStatsList =
+    gameAwayPlayerStatsList.length === 0
       ? <tr><td colSpan="6">No data to show</td></tr>
-      : Object.entries(playerStats.awayTeamPlayers).map((awayPlayerStats, k) => <GameStats playerStats={awayPlayerStats} key={k} />);
+      : gameAwayPlayerStatsList.map((awayPlayerStats, key) => <GameStats gameId={gameId} homeAway="away" playerStats={awayPlayerStats} setPlayers={setAwayPlayerStats} canEdit={canEdit} key={key} />);
 
   return (
     <td colSpan="6">
-      <div className="game-player-stats">
+      <div className={canEdit && isAdmin ? 'game-player-stats-edit' : 'game-player-stats'}>
         <table className="table table-hover table-responsive table-striped schedule-module">
           <thead>
             <tr>
-              <td><span className="game-team-identifier">Home </span>Player</td>
+              <td>Home Player</td>
               <td> G </td>
               <td> A </td>
+              <td> GA </td>
               <td> SA </td>
-              <td> Sv % </td>
+              {!canEdit && <td> Sv % </td> }
             </tr>
           </thead>
           <tbody>
@@ -49,15 +42,16 @@ function GamePlayerStats({ gameId }) {
           </tbody>
         </table>
       </div>
-      <div className="game-player-stats">
+      <div className={canEdit && isAdmin ? 'game-player-stats-edit' : 'game-player-stats'}>
         <table className="table table-hover table-responsive table-striped schedule-module">
           <thead>
             <tr>
-              <td><span className="game-team-identifier">Away </span>Player</td>
+              <td>Away Player</td>
               <td> G </td>
               <td> A </td>
+              <td> GA </td>
               <td> SA </td>
-              <td> Sv % </td>
+              {!canEdit && <td> Sv % </td> }
             </tr>
           </thead>
           <tbody>
@@ -69,4 +63,11 @@ function GamePlayerStats({ gameId }) {
   )
 }
 
-export default GamePlayerStats;
+GamePlayerStats.propTypes = {
+  gameId: PropTypes.string.isRequired,
+  gameHomePlayerStatsList: PropTypes.array,
+  setHomePlayers: PropTypes.func,
+  gameAwayPlayerStatsList: PropTypes.array,
+  setAwayPlayers: PropTypes.func,
+  canEdit: PropTypes.bool
+}

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from "prop-types";
 import TeamRow from '../TeamRow';
+import { useNavigate } from "react-router-dom";
 
 export default function SeasonTeams({seasonId, isValidUser}) {
   const [teams, setTeams] = useState({});
@@ -10,23 +11,26 @@ export default function SeasonTeams({seasonId, isValidUser}) {
   const [teamName, setTeamName] = useState();
   const [teamColor, setTeamColor] = useState();
   const [createConfirmed, setCreateConfirmed] = useState(false);
+  const navigate = useNavigate();
   const linkUri = import.meta.env.VITE_BASE_URI;
 
   useEffect(() => {
-    axios
+    if (isValidUser) {
+      axios
       .get(`${linkUri}api/teams`, {
         params: { seasonId: seasonId}
       })
       .then((seasonTeams) => {
-        if (isValidUser) {
-          setTeams(seasonTeams.data);
-        }
+        setTeams(seasonTeams.data);
       })
       .catch((err) => {
         console.log('Error from Get Seasons');
         console.log(err);
       });
-  }, [linkUri, seasonId, isValidUser]);
+    } else {
+      navigate("/admin");
+    }
+  }, [linkUri, seasonId, isValidUser, navigate]);
 
   const handleSubmit = async e => {
     e.preventDefault();

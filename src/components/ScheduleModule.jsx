@@ -1,12 +1,13 @@
 import '../styles/App.css';
+import PropTypes from "prop-types";
 import GameModule from './GameModule';
 
-function ScheduleModule({ schedule }) {
+export default function ScheduleModule({ isAdmin, isValidUser, schedule }) {
   const gameSchedule = schedule[1];
   const parseDateSchedule =
     (gameSchedule.length === 0)
       ? <table><tbody><tr><td colSpan="6">No games found</td></tr></tbody></table>
-      : gameSchedule.map((game, k) => <GameModule game={game} key={k} />);
+      : gameSchedule.map((game, k) => <GameModule isAdmin={isAdmin} isValidUser={isValidUser} game={game} key={k} />);
 
   return (
     <>
@@ -31,4 +32,8 @@ function ScheduleModule({ schedule }) {
   )
 }
 
-export default ScheduleModule;
+ScheduleModule.propTypes = {
+  isAdmin: PropTypes.bool,
+  isValidUser: PropTypes.bool,
+  schedule: PropTypes.array.isRequired
+}
