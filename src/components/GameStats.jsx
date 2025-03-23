@@ -69,7 +69,7 @@ export default function GameStats({ playerStats, setPlayers, canEdit }) {
         </td>
 
         <td className={playerStats.isSub ? "sub-player" : ""}>
-          {canEdit && playerStats.isGoalie &&
+          {canEdit &&
             <input type="number" min="0" className="form-control col" value={ goalsAgainst ?? '' } onChange={e => setPlayerGoalsAgainst(e.target.value)} />
           }
           {!canEdit &&
@@ -77,7 +77,7 @@ export default function GameStats({ playerStats, setPlayers, canEdit }) {
           }
         </td>
         <td className={playerStats.isSub ? "sub-player" : ""}>
-          {canEdit && playerStats.isGoalie &&
+          {canEdit &&
             <input type="number" min="0" className="form-control col" value={ shotsAgainst ?? '' } onChange={e => setPlayerShotsAgainst(e.target.value)} />
           }
           {!canEdit &&
