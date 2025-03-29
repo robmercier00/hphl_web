@@ -17,8 +17,9 @@ export default function GameModule({ isAdmin, isValidUser, game }) {
   const [updateConfirmed, setUpdateConfirmed] = useState(false);
 
   function getGamePlayerStats() {
+    setIsExpanded(!isExpanded);
+
     if (!canEdit) {
-      setIsExpanded(!isExpanded);
       setGameHomePlayerStatsList(!isExpanded ? game.homeTeamPlayers : []);
       setGameAwayPlayerStatsList(!isExpanded ? game.awayTeamPlayers : []);
     }
@@ -125,7 +126,7 @@ export default function GameModule({ isAdmin, isValidUser, game }) {
           canEdit={canEdit} />
       </tr>
       }
-      {canEdit &&
+      {canEdit && isExpanded &&
       <tr>
         <td colSpan="6">
           <div>
