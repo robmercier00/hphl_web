@@ -131,7 +131,7 @@ export default function GameModule({ isAdmin, isValidUser, game }) {
           <div>
             <button type="submit" onClick={handleSubmit} className="btn btn-primary">Save Game</button>
           </div>
-          <span className={`alert-success ${updateConfirmed ? 'alert-shown' : 'alert-hidden'}`}>Season Updated!</span>
+          <span className={`alert-success ${updateConfirmed ? 'alert-shown' : 'alert-hidden'}`}>Game Updated!</span>
         </td>
       </tr>
       }
