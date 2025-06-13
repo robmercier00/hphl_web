@@ -23,6 +23,7 @@ function Records() {
                 <li><b>Most assists, single season</b></li>
                 <ul>
                   <li>Boris Diapella - 44 in 12 games, 2011</li>
+                  <li>Ronnie Perry - 44 in 16 games, 2025</li>
                 </ul>
                 <li><b>Fastest to 50 goals, single season</b></li>
                 <ul>
